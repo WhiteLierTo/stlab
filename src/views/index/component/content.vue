@@ -25,7 +25,7 @@ export default {
   background-color: @defaultContentBgColor;
   margin: @defaultContentPadding;
   width: 98%;
-  margin: 1% auto;
+  margin: 1.5% auto;
   .content-content {
     padding: @defaultContentPadding;
   }
