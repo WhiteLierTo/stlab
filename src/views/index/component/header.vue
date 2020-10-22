@@ -2,6 +2,7 @@
   <div class="header saddaadsads">
     <div class="header-left">
       <img src="../../../assets/images/logo.png" />
+      <span>STLAB v1.0</span>
     </div>
     <div class="header-middle">
       <el-menu
@@ -13,53 +14,19 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-        <el-submenu index="1">
-          <template slot="title">个人工作台</template>
-          <el-menu-item index="/workbench/announcement">
-            通知公告
+        <el-submenu
+          :index="item.label"
+          v-for="(item, index) in navInfo"
+          :key="index"
+        >
+          <template slot="title">{{ item.label }}</template>
+          <el-menu-item
+            :index="item1.path"
+            v-for="(item1, index) in item.children"
+            :key="index"
+          >
+            {{ item1.label }}
           </el-menu-item>
-          <el-menu-item index="/workbench/registration">委托登记</el-menu-item>
-          <el-menu-item index="/workbench/entrust"> 我的委托</el-menu-item>
-        </el-submenu>
-        <el-submenu index="2">
-          <template slot="title">案件检材</template>
-          <el-menu-item index="2-1">案件管理</el-menu-item>
-          <el-menu-item index="2-2">检材管理</el-menu-item>
-        </el-submenu>
-        <el-submenu index="3">
-          <template slot="title">智能报表</template>
-          <el-menu-item index="3-1">笔录生成</el-menu-item>
-          <el-menu-item index="3-2">模板配置</el-menu-item>
-        </el-submenu>
-        <el-submenu index="4">
-          <template slot="title">设备报表</template>
-          <el-menu-item index="4-1"> 勘验设备管理</el-menu-item>
-          <el-menu-item index="4-2">基础设施管理</el-menu-item>
-          <el-menu-item index="4-3">智能柜管理</el-menu-item>
-        </el-submenu>
-        <el-submenu index="5">
-          <template slot="title">学习管理</template>
-          <el-menu-item index="5-1">技术标准</el-menu-item>
-          <el-menu-item index="5-2">学习园地</el-menu-item>
-        </el-submenu>
-        <el-submenu index="6">
-          <template slot="title">驾驶舱</template>
-          <el-menu-item index="6-1">数据大屏</el-menu-item>
-          <el-menu-item index="6-2">业务大屏</el-menu-item>
-        </el-submenu>
-        <el-submenu index="7">
-          <template slot="title">用户角色</template>
-          <el-menu-item index="7-1">组织管理</el-menu-item>
-          <el-menu-item index="7-2">用户管理</el-menu-item>
-          <el-menu-item index="7-3">角色管理</el-menu-item>
-          <el-menu-item index="7-4">菜单管理管理</el-menu-item>
-        </el-submenu>
-        <el-submenu index="8">
-          <template slot="title">系统管理</template>
-          <el-menu-item index="8-1">系统配置</el-menu-item>
-          <el-menu-item index="8-2">字典设置</el-menu-item>
-          <el-menu-item index="8-3">日志管理</el-menu-item>
-          <el-menu-item index="8-4">数据录入</el-menu-item>
         </el-submenu>
       </el-menu>
     </div>
@@ -83,6 +50,61 @@ export default {
   data() {
     return {
       activeIndex: "1",
+      navInfo: [
+        {
+          label: "个人工作台",
+          permissionKey: "allow",
+          children: [
+            {
+              label: "通知公告",
+              path: "/workbench/announcement",
+              permissionKey: "allow",
+            },
+            {
+              label: "委托登记",
+              path: "/workbench/registration",
+              permissionKey: "allow",
+            },
+            {
+              label: "我的委托",
+              path: "/workbench/entrust",
+              permissionKey: "allow",
+            },
+          ],
+        },
+        {
+          label: "案件检材",
+          permissionKey: "allow",
+          children: [
+            {
+              label: "案件管理",
+              path: "/case/case",
+              permissionKey: "allow",
+            },
+            {
+              label: "检材管理",
+              path: "/case/check",
+              permissionKey: "allow",
+            },
+          ],
+        },
+        {
+          label: "智能报表",
+          permissionKey: "allow",
+          children: [
+            {
+              label: "笔录生成",
+              path: "/report/record",
+              permissionKey: "allow",
+            },
+            {
+              label: "模板配置",
+              path: "/report/template",
+              permissionKey: "allow",
+            },
+          ],
+        },
+      ],
     };
   },
   methods: {
@@ -96,7 +118,7 @@ export default {
 
 <style lang="less" scoped>
 @import "../../../style/config";
-
+@import "../../../style/style";
 .header {
   width: 100%;
   height: @topNavBarHeight;
@@ -105,21 +127,27 @@ export default {
   display: flex;
   flex-direction: row;
   .header-left {
-    width: 150px;
-    height: 75px;
+    display: flex;
+    flex-direction: row;
+    color: #f1f1f1;
+    padding-right: 15px;
     img {
-      width: 100%;
-      height: 100%;
-      padding: 15px;
+      width: 77px;
+      height: 56px;
+      padding: 10px 0 10px 10px;
+    }
+    span {
+      line-height: 75px;
     }
   }
   .header-middle {
     flex: 1;
   }
   .header-right {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     margin: 15px;
+    .flexCenter();
     img {
       width: 100%;
       height: 100%;
@@ -132,8 +160,8 @@ export default {
 <style lang="less">
 .saddaadsads {
   .el-submenu .el-submenu__title {
-    height: 75px;
-    line-height: 75px;
+    height: 55px;
+    line-height: 55px;
   }
   .el-menu.el-menu--horizontal {
     border-bottom: none;
