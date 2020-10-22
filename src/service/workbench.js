@@ -1,4 +1,4 @@
-import service from "./index";
+import service from "./base";
 
 class Workbench {
   constructor(ajax) {
