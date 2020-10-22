@@ -2,6 +2,7 @@
 
 const workbenchRouter = {
   path: "/workbench",
+  redirect:"/workbench/announcement",
   component: () => import("../views/empty"),
   meta: { label: "个人工作台" },
   children: [
