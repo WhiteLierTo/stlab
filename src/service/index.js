@@ -26,10 +26,10 @@ service.interceptors.request.use(
 service.interceptors.response.use((res) => {
   const code = res.status;
   if (code === 401) {
-    Vue.$message.error("401错误");
+    // Vue.$message.error("401错误");
     return Promise.reject("error");
   } else if (code !== 200) {
-    Vue.$message.error("非401错误");
+    // Vue.$message.error("非401错误");
     return Promise.reject("error");
   } else if (res.data.code === 401) {
     // 无权限
@@ -37,7 +37,7 @@ service.interceptors.response.use((res) => {
       Vue.$router.push("/login");
     }
   } else if (res.data.code === 403) {
-    Vue.$message.error("您没有权限");
+    // Vue.$message.error("您没有权限");
   } else {
     return res.data;
   }

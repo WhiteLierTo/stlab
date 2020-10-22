@@ -7,7 +7,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: "/workbench/announcement",
+    redirect: "/index",
   },
   {
     path: "/login",
@@ -25,7 +25,6 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  mode: "history",
   routes,
 });
 
