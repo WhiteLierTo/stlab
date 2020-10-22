@@ -64,7 +64,15 @@
       </el-menu>
     </div>
     <div class="header-right">
-      <img src="../../../assets/images/head.jpg" />
+      <el-dropdown>
+        <span class="el-dropdown-link">
+          <img src="../../../assets/images/head.jpg" />
+        </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item>个人中心</el-dropdown-item>
+          <el-dropdown-item>退出登录</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
     </div>
   </div>
 </template>

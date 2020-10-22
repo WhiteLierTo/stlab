@@ -1,10 +1,9 @@
-import service from "./index";
+import service from "./base";
 
 class Login {
   constructor(ajax) {
     this.ajax = ajax;
   }
-
   async loginSync(username, password) {
     let data = new URLSearchParams();
     data.append("userName", username);

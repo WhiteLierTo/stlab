@@ -9,24 +9,38 @@
         </div>
         <div class="formItem">
           <span class="el-icon-user"></span>
-          <el-input size="middle" placeholder="请输入用户名" v-model="name" clearable></el-input>
+          <el-input
+            size="middle"
+            placeholder="请输入用户名"
+            v-model="name"
+            clearable
+          ></el-input>
         </div>
         <div class="formItem">
           <span class="el-icon-lock"></span>
-          <el-input size="middle" placeholder="请输入密码" v-model="password" show-password></el-input>
+          <el-input
+            size="middle"
+            placeholder="请输入密码"
+            v-model="password"
+            show-password
+          ></el-input>
         </div>
         <verificationcode></verificationcode>
-        <el-button type="primary" size="middle" @click="loginHandle">登录</el-button>
+        <el-button type="primary" size="middle" @click="loginHandle"
+          >登录</el-button
+        >
       </div>
     </div>
-    <div class="login-footer">Copyright © www.jsdyt.com 2020 - 江苏鼎跃腾信息技术有限公司</div>
+    <div class="login-footer">
+      Copyright © www.jsdyt.com 2020 - 江苏鼎跃腾信息技术有限公司
+    </div>
   </div>
 </template>
 
 <script>
-import verificationcode from '../../components/verificationcode';
+import verificationcode from "../../components/verificationcode";
 export default {
-  components:{verificationcode},
+  components: { verificationcode },
   name: "Login",
   data() {
     return {
@@ -40,6 +54,7 @@ export default {
         this.name,
         this.password
       );
+
       if (ok) {
         this.$utils.cookie.set(tokenOrMsg);
         this.$router.push("/");
@@ -79,25 +94,23 @@ export default {
       flex-direction: column;
       justify-content: space-around;
       padding: 6% 5% 6% 5%;
-      .content-right-title{
+      .content-right-title {
         margin-top: -15px;
-        p:nth-child(1)
-        {
+        p:nth-child(1) {
           font-size: 28px;
-        };
-        p:nth-child(2)
-        {
+        }
+        p:nth-child(2) {
           font-size: 14px;
-        };
-      };
-      .formItem{
+        }
+      }
+      .formItem {
         display: flex;
         align-items: center;
-        span{
+        span {
           font-size: 24px;
           margin-right: 10px;
-        };
-      };
+        }
+      }
     }
   }
   .login-footer {

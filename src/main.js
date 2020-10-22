@@ -3,15 +3,15 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 /**elementUI */
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
-import $ajax from "./service"
-import $utils from "./utils"
+import $ajax from "./service/index";
+import $utils from "./utils/index";
 
 Vue.prototype.$utils = $utils;
 Vue.prototype.$ajax = $ajax;
