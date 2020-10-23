@@ -2,7 +2,7 @@
   <div class="header saddaadsads">
     <div class="header-left">
       <img src="../../../assets/images/logo.png" />
-      <span>STLAB v1.0</span>
+      <span class="system-name">STLAB v1.0</span>
     </div>
     <div class="header-middle">
       <el-menu
@@ -10,7 +10,7 @@
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
-        background-color="#545c64"
+        background-color="#57A3F3"
         text-color="#fff"
         active-text-color="#ffd04b"
       >
@@ -150,7 +150,7 @@ export default {
   width: 100%;
   height: @topNavBarHeight;
   box-shadow: 0 1px 2px 0 rgba(217, 208, 208, 0.5);
-  background: rgb(84, 92, 100);
+  background: #57a3f3;
   display: flex;
   flex-direction: row;
   .header-left {
@@ -183,6 +183,9 @@ export default {
     }
   }
 }
+.system-name {
+  line-height: 55px !important;
+}
 </style>
 
 <style lang="less">
@@ -194,6 +197,10 @@ export default {
   .el-menu.el-menu--horizontal {
     border-bottom: none;
   }
+  .el-submenu__icon-arrow {
+    color: #f1f1f1;
+  }
+
   .el-menu-item,
   .el-submenu__title {
     float: left;

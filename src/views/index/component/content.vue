@@ -46,14 +46,20 @@ export default {
   .el-breadcrumb {
     padding: 15px 0 0 15px;
   }
-}
+};
+/* fade-transform */
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all .5s;
+};
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.3s linear;
-}
-.fade-enter,
-.fade-leave-to {
+.fade-transform-enter {
   opacity: 0;
-}
+  transform: translateX(-10px);
+};
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(10px);
+};
 </style>
