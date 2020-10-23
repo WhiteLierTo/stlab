@@ -1,10 +1,11 @@
 <template>
   <div class="content-box hvhjvhkvsd">
-    <el-breadcrumb separator="/">
+    <!-- <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item><a href="/">个人工作台</a></el-breadcrumb-item>
       <el-breadcrumb-item>通知公告</el-breadcrumb-item>
-    </el-breadcrumb>
+    </el-breadcrumb> -->
+    <Breadcrumb />
     <div class="content-main">
       <div class="content-content">
         <router-view />
@@ -14,8 +15,12 @@
 </template>
 
 <script>
+import Breadcrumb from "./Breadcrumb";
 export default {
   name: "content",
+  components: {
+    Breadcrumb,
+  },
 };
 </script>
 

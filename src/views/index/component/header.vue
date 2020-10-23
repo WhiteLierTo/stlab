@@ -14,10 +14,12 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
-        <el-submenu
+        <navMenu :navMenus="navInfo" />
+
+        <!-- <el-submenu
           :index="item.label"
           v-for="(item, index) in navInfo"
-          :key="index"
+          
         >
           <template slot="title">{{ item.label }}</template>
           <el-menu-item
@@ -27,7 +29,7 @@
           >
             {{ item1.label }}
           </el-menu-item>
-        </el-submenu>
+        </el-submenu>-->
       </el-menu>
     </div>
     <div class="header-right">
@@ -45,12 +47,22 @@
 </template>
 
 <script>
+import navMenu from "./navMenu";
+
 export default {
   name: "Header",
+  components: {
+    navMenu,
+  },
   data() {
     return {
       activeIndex: "1",
       navInfo: [
+        {
+          label: "首页",
+          permissionKey: "allow",
+          path: "/index",
+        },
         {
           label: "个人工作台",
           permissionKey: "allow",
@@ -109,7 +121,6 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
       this.$router.push({ path: key });
     },
   },
@@ -123,7 +134,7 @@ export default {
   width: 100%;
   height: @topNavBarHeight;
   box-shadow: 0 1px 2px 0 rgba(217, 208, 208, 0.5);
-  background: #57A3F3;
+  background: #57a3f3;
   display: flex;
   flex-direction: row;
   .header-left {
@@ -133,7 +144,7 @@ export default {
     padding-right: 15px;
     img {
       width: 77px;
-      height: 56px;
+      height: 55px;
       padding: 10px 0 10px 10px;
     }
     span {
@@ -141,6 +152,7 @@ export default {
     }
   }
   .header-middle {
+    height: @topNavBarHeight;
     flex: 1;
   }
   .header-right {
@@ -154,10 +166,9 @@ export default {
       border-radius: 50%;
     }
   }
-};
-.system-name
-{
-  line-height: 55px!important;
+}
+.system-name {
+  line-height: 55px !important;
 }
 </style>
 
@@ -169,10 +180,18 @@ export default {
   }
   .el-menu.el-menu--horizontal {
     border-bottom: none;
-  };
-  .el-submenu__icon-arrow
-{
-  color: #f1f1f1;
-};
+  }
+  .el-submenu__icon-arrow {
+    color: #f1f1f1;
+  }
+
+  .el-menu-item,
+  .el-submenu__title {
+    float: left;
+    padding: 0px 30px;
+  }
+  .el-submenu__title i {
+    padding: 10px;
+  }
 }
 </style>
