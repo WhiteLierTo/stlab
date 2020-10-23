@@ -1,5 +1,5 @@
 <template>
-  <div class="uploadDiv">
+  <div class="uploadDiv sdsdvdfdds">
     <div style="margin-bottom:8px">
       <el-button type="primary" size="mini" icon="el-icon-camera-solid" @click="takePhoto">拍照</el-button>
       <span v-if="uploadTitle" class="uploadTitle">{{uploadTitle}}</span>
@@ -279,27 +279,30 @@ video {
   margin-left: 8px;
   font-weight: 600;
 }
-::v-deep .el-upload--picture-card {
-  width: 100px;
-  height: 100px;
-}
-::v-deep .el-upload {
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
-}
-::v-deep .el-upload-list--picture-card .el-upload-list__item {
-  width: 100px;
-  height: 100px;
-}
-::v-deep .el-upload-list--picture-card .el-upload-list__item-thumbnail {
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
-}
-::v-deep .avatar {
-  width: 100px;
-  height: 100px;
+</style>
+<style lang="less">
+.sdsdvdfdds {
+  .el-upload--picture-card {
+    width: 100px;
+    height: 100px;
+  }
+  .el-upload {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+  }
+  .el-upload-list--picture-card .el-upload-list__item {
+    width: 100px;
+    height: 100px;
+  }
+  .el-upload-list--picture-card .el-upload-list__item-thumbnail {
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+  }
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
 }
 </style>
-
