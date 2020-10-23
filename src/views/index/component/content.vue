@@ -1,21 +1,23 @@
 <template>
   <div class="content-box hvhjvhkvsd">
-    <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item><a href="/">个人工作台</a></el-breadcrumb-item>
-      <el-breadcrumb-item>通知公告</el-breadcrumb-item>
-    </el-breadcrumb>
+    <Breadcrumb />
     <div class="content-main">
       <div class="content-content">
-        <router-view />
+        <transition name="fade">
+          <router-view />
+        </transition>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Breadcrumb from "./Breadcrumb";
 export default {
-  name: "content",
+  name: "Content",
+  components: {
+    Breadcrumb,
+  },
 };
 </script>
 
@@ -28,7 +30,7 @@ export default {
     background-color: @defaultContentBgColor;
     margin: @defaultContentPadding;
     width: 98%;
-    margin: 1% auto;
+    margin: 0 auto;
     .content-content {
       padding: @defaultContentPadding;
       box-shadow: 0 1px 2px 0 rgba(217, 208, 208, 0.5);
@@ -38,9 +40,20 @@ export default {
 </style>
 
 <style lang="less">
+@import "../../../style/config.less";
+
 .hvhjvhkvsd {
   .el-breadcrumb {
     padding: 15px 0 0 15px;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s linear;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

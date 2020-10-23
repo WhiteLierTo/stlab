@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import verificationcode from "../../components/verificationcode";
+import verificationcode from "../../../components/verificationcode";
 export default {
   components: { verificationcode },
   name: "Login",
@@ -64,10 +64,10 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-@import "../../style/config.less";
+@import "../../../style/config.less";
 .login-main {
   height: 100%;
-  background: url("../../assets/images/background.png") no-repeat;
+  background: url("../../../assets/images/background.png") no-repeat;
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
@@ -84,7 +84,7 @@ export default {
     .center-content-left {
       width: 504px;
       height: 100%;
-      background: url("../../assets/images/loginBox.png") no-repeat;
+      background: url("../../../assets/images/loginBox.png") no-repeat;
       background-size: 100% 100%;
     }
     .center-content-right {

@@ -5,16 +5,19 @@ import store from "./store";
 /**elementUI */
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+import tableWithFilter from "./components/tableWithFilter/tableWithFilter";
+Vue.component("tableWithFilter", tableWithFilter);
 
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
-import $ajax from "./service/index";
-import $utils from "./utils/index";
+import $ajax from "./service";
+import $utils from "./utils";
 
 Vue.prototype.$utils = $utils;
 Vue.prototype.$ajax = $ajax;
+
 
 export default new Vue({
   router,

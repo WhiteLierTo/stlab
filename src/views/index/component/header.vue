@@ -14,6 +14,8 @@
         text-color="#fff"
         active-text-color="#ffd04b"
       >
+        <!-- <navMenu :navMenus="navInfo" /> -->
+
         <el-submenu
           :index="item.label"
           v-for="(item, index) in navInfo"
@@ -36,8 +38,12 @@
           <img src="../../../assets/images/head.jpg" />
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>个人中心</el-dropdown-item>
-          <el-dropdown-item>退出登录</el-dropdown-item>
+          <el-dropdown-item>
+            <span @click="msgHandle">个人中心</span>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <div @click="exitHandle">退出登录</div>
+          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -45,12 +51,23 @@
 </template>
 
 <script>
+import navMenu from "./navMenu";
+import cookieApi from "../../../utils/cookie";
+
 export default {
   name: "Header",
+  components: {
+    navMenu,
+  },
   data() {
     return {
       activeIndex: "1",
       navInfo: [
+        {
+          label: "首页",
+          permissionKey: "allow",
+          path: "/index/home",
+        },
         {
           label: "个人工作台",
           permissionKey: "allow",
@@ -109,8 +126,17 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
       this.$router.push({ path: key });
+    },
+    /**退出登录 */
+    exitHandle() {
+      this.$router.push("/login");
+      //清除token
+      cookieApi.delete();
+    },
+    /**个人中心 */
+    msgHandle() {
+      this.$router.push("/user/personal");
     },
   },
 };
@@ -119,6 +145,7 @@ export default {
 <style lang="less" scoped>
 @import "../../../style/config";
 @import "../../../style/style";
+
 .header {
   width: 100%;
   height: @topNavBarHeight;
@@ -133,7 +160,7 @@ export default {
     padding-right: 15px;
     img {
       width: 77px;
-      height: 56px;
+      height: 55px;
       padding: 10px 0 10px 10px;
     }
     span {
@@ -141,6 +168,7 @@ export default {
     }
   }
   .header-middle {
+    height: @topNavBarHeight;
     flex: 1;
   }
   .header-right {
@@ -166,5 +194,18 @@ export default {
   .el-menu.el-menu--horizontal {
     border-bottom: none;
   }
+  .el-menu-item,
+  .el-submenu__title {
+    float: left;
+    padding: 0px 30px;
+  }
+  .el-submenu__title i {
+    padding: 10px;
+  }
+  // .el-menu--horizontal:nth-child(1) {
+  //   position: absolute !important;
+  //   top: 25px !important;
+  //   left: 150px !important;
+  // }
 }
 </style>
