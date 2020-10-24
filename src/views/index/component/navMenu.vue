@@ -1,16 +1,31 @@
 <template>
   <div>
-    <span v-for="item in navMenus" :key="item.label">
-      <el-submenu :index="item.label" v-if="item && item.children">
-        <template slot="title">
+    <el-menu
+      :default-active="activeIndex"
+      class="el-menu-demo"
+      mode="horizontal"
+      @select="handleSelect"
+      background-color="rgb(84, 92, 100)"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+    >
+      <template v-for="(item, i) in navMenus">
+        <el-menu-item
+          v-if="!item.children"
+          :index="item.path"
+          :key="item.path"
+          class="el-menu-item-wrap"
+        >
           <span slot="title">{{ item.label }}</span>
-        </template>
-        <navMenu :navMenus="item.children"></navMenu>
-      </el-submenu>
-      <el-menu-item :index="item.path" :key="item.label" v-else>
-        <span>{{ item.label }}</span>
-      </el-menu-item>
-    </span>
+        </el-menu-item>
+        <el-submenu v-if="item.children" :index="i + ''" :key="i + 44">
+          <template slot="title">
+            <span slot="title">{{ item.label }}</span>
+          </template>
+          <nav-Menu :navMenus="item.children" />
+        </el-submenu>
+      </template>
+    </el-menu>
   </div>
 </template>
 
@@ -18,9 +33,15 @@
 export default {
   name: "navMenu", //模板名称
   data() {
-    return {};
+    return {
+      activeIndex: "1",
+    };
   },
-  beforeMount() {},
   props: ["navMenus"],
+  methods: {
+    handleSelect(key, keyPath) {
+      this.$router.push({ path: key });
+    },
+  },
 };
 </script>

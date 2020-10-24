@@ -5,7 +5,7 @@
       <span class="system-name">STLAB v1.0</span>
     </div>
     <div class="header-middle">
-      <el-menu
+      <!-- <el-menu
         :default-active="activeIndex"
         class="el-menu-demo"
         mode="horizontal"
@@ -13,10 +13,10 @@
         background-color="#57A3F3"
         text-color="#fff"
         active-text-color="#ffd04b"
-      >
-        <!-- <navMenu :navMenus="navInfo" /> -->
+      > -->
+      <navMenu :navMenus="navInfo" />
 
-        <el-submenu
+      <!-- <el-submenu
           :index="item.label"
           v-for="(item, index) in navInfo"
           :key="index"
@@ -29,8 +29,8 @@
           >
             {{ item1.label }}
           </el-menu-item>
-        </el-submenu>
-      </el-menu>
+        </el-submenu> -->
+      <!-- </el-menu> -->
     </div>
     <div class="header-right">
       <el-dropdown>
@@ -61,7 +61,6 @@ export default {
   },
   data() {
     return {
-      activeIndex: "1",
       navInfo: [
         {
           label: "首页",
@@ -125,9 +124,6 @@ export default {
     };
   },
   methods: {
-    handleSelect(key, keyPath) {
-      this.$router.push({ path: key });
-    },
     /**退出登录 */
     exitHandle() {
       this.$router.push("/login");
@@ -150,7 +146,7 @@ export default {
   width: 100%;
   height: @topNavBarHeight;
   box-shadow: 0 1px 2px 0 rgba(217, 208, 208, 0.5);
-  background: #57a3f3;
+  background: rgb(84, 92, 100);
   display: flex;
   flex-direction: row;
   .header-left {
@@ -184,15 +180,15 @@ export default {
   }
 }
 .system-name {
-  line-height: 55px !important;
+  line-height: 60px !important;
 }
 </style>
 
 <style lang="less">
 .saddaadsads {
   .el-submenu .el-submenu__title {
-    height: 55px;
-    line-height: 55px;
+    height: 60px;
+    line-height: 60px;
   }
   .el-menu.el-menu--horizontal {
     border-bottom: none;
@@ -209,10 +205,5 @@ export default {
   .el-submenu__title i {
     padding: 10px;
   }
-  // .el-menu--horizontal:nth-child(1) {
-  //   position: absolute !important;
-  //   top: 25px !important;
-  //   left: 150px !important;
-  // }
 }
 </style>
