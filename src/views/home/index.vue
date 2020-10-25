@@ -30,13 +30,10 @@ export default {
           {
             prop: "displayFlag",
             label: "显示/隐藏",
-            // beforeDisplay: (row) =>
-            //   this.$utils.data.news.getchannelStatusOptions(row.displayFlag),
           },
           {
             prop: "isShowNewflash",
             label: "是否显示快讯",
-            // beforeDisplay: (row) => (row.isShowNewflash ? "显示" : "隐藏"),
           },
           {
             prop: "description",

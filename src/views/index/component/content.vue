@@ -3,9 +3,9 @@
     <Breadcrumb />
     <div class="content-main">
       <div class="content-content">
-        <transition name="fade">
+        <!-- <transition name="fade"> -->
           <router-view />
-        </transition>
+        <!-- </transition> -->
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
     width: 100%;
     background-color: @defaultContentBgColor;
     margin: @defaultContentPadding;
-    width: 98%;
+    width: 99%;
     margin: 0 auto;
     .content-content {
       padding: @defaultContentPadding;
@@ -44,7 +44,7 @@ export default {
 
 .hvhjvhkvsd {
   .el-breadcrumb {
-    padding: 15px 0 0 15px;
+    padding: 0px 0 0 15px;
   }
 };
 /* fade-transform */

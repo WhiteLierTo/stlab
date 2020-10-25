@@ -5,32 +5,7 @@
       <span class="system-name">STLAB v1.0</span>
     </div>
     <div class="header-middle">
-      <!-- <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-        background-color="#57A3F3"
-        text-color="#fff"
-        active-text-color="#ffd04b"
-      > -->
       <navMenu :navMenus="navInfo" />
-
-      <!-- <el-submenu
-          :index="item.label"
-          v-for="(item, index) in navInfo"
-          :key="index"
-        >
-          <template slot="title">{{ item.label }}</template>
-          <el-menu-item
-            :index="item1.path"
-            v-for="(item1, index) in item.children"
-            :key="index"
-          >
-            {{ item1.label }}
-          </el-menu-item>
-        </el-submenu> -->
-      <!-- </el-menu> -->
     </div>
     <div class="header-right">
       <el-dropdown>
@@ -189,9 +164,6 @@ export default {
   .el-submenu .el-submenu__title {
     height: 60px;
     line-height: 60px;
-  }
-  .el-menu.el-menu--horizontal {
-    border-bottom: none;
   }
   .el-submenu__icon-arrow {
     color: #f1f1f1;

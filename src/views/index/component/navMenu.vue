@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="bjkjd">
     <el-menu
-      :default-active="activeIndex"
+      :default-active="$route.path"
       class="el-menu-demo"
       mode="horizontal"
       @select="handleSelect"
@@ -10,15 +10,10 @@
       active-text-color="#ffd04b"
     >
       <template v-for="(item, i) in navMenus">
-        <el-menu-item
-          v-if="!item.children"
-          :index="item.path"
-          :key="item.path"
-          class="el-menu-item-wrap"
-        >
+        <el-menu-item v-if="!item.children" :index="item.path" :key="item.path">
           <span slot="title">{{ item.label }}</span>
         </el-menu-item>
-        <el-submenu v-if="item.children" :index="i + ''" :key="i + 44">
+        <el-submenu v-if="item.children" :index="i + ''" :key="i">
           <template slot="title">
             <span slot="title">{{ item.label }}</span>
           </template>
@@ -45,3 +40,17 @@ export default {
   },
 };
 </script>
+
+<style lang="less">
+.bjkjd {
+  .el-menu--horizontal > .el-menu-item.is-active {
+    border-bottom: none;
+  }
+  .el-menu--horizontal > .el-menu-item {
+    border-bottom: none;
+  }
+  .el-menu.el-menu--horizontal {
+    border-bottom: none;
+  }
+}
+</style>
