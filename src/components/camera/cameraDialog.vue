@@ -1,7 +1,7 @@
 <template>
   <el-dialog
     title="拍照"
-    :visible.sync="dialogVisible"
+    :visible.sync="cameraVisible"
     width="53%"
     style="padding-bottom: 0"
     @opened="dialogOpen"
@@ -11,8 +11,8 @@
     <div class="camera_outer">
       <div style="display: flex">
         <div style="margin-right: 15px">
-          <video id="videoCamera" :width="videoWidth" :height="videoHeight" autoplay></video>
-          <canvas style="display:none" id="canvasCamera" :width="videoWidth" :height="videoHeight"></canvas>
+          <video :id="`video${diyId}`" :width="videoWidth" :height="videoHeight" autoplay></video>
+          <canvas style="display:none" :id="`canvas${diyId}`" :width="videoWidth" :height="videoHeight"></canvas>
         </div>
         <div v-if="imgSrc" class="img_bg_camera">
           <img :src="imgSrc" alt class="tx_img" />
@@ -55,10 +55,9 @@ function getBase64(file) {
   });
 }
 export default {
-  props: ["uploadTitle"],
+  props: ["uploadTitle","cameraVisible","diyId"],
   data() {
     return {
-      dialogVisible: false, //photo组件的显隐
       videoWidth: 480, //video组件的宽度
       videoHeight: 320, //video组件的高度
       imgSrc: "", //右侧预览图片的url
@@ -75,7 +74,7 @@ export default {
       if (this.thisVideo) {
         this.stopNavigator();
       }
-      this.dialogVisible = false;
+      this.$emit('closeCamera');
     },
     dialogClose() {
       if (this.thisVideo) {
@@ -85,10 +84,7 @@ export default {
     }, //关闭dialog时关闭摄像头
     comfirm() {
       this.uploadPhoto();
-      //   if (this.thisVideo) {
-      //     this.stopNavigator();
-      //   }
-      //   this.dialogVisible = false;
+      // this.$emit('closeCamera');
     }, //点击确认按钮传递照片信息去父组件
     getDevice() {
       const _this = this;
@@ -107,9 +103,9 @@ export default {
     }, //获取电脑上的设备列表
     getCompetence(deviceIndex) {
       var _this = this;
-      _this.thisCanvas = document.getElementById("canvasCamera");
+      _this.thisCanvas = document.getElementById(`canvas${this.diyId}`);
       _this.thisContext = this.thisCanvas.getContext("2d");
-      _this.thisVideo = document.getElementById("videoCamera");
+      _this.thisVideo = document.getElementById(`video${this.diyId}`);
       _this.thisVideo.style.display = "block";
       // 获取媒体属性，旧版本浏览器可能不支持mediaDevices，我们首先设置一个空对象
       if (navigator.mediaDevices === undefined) {
@@ -209,7 +205,7 @@ export default {
       return new Blob([ia], { type: mimeString });
     },
     dialogOpen() {
-      this.getCompetence();
+      this.getCompetence("1a6b03336dfec70cf806d61d7241b6b704d400d99cab18304ea39b062307f457");
       this.getDevice();
     }, //监听组件打开时启动摄像头并且获取电脑上的摄像头列表
     chooseDevice(value) {
@@ -224,13 +220,13 @@ export default {
         });
         return;
       }
-      let canvas = document.getElementById("canvasCamera");
+      let canvas = document.getElementById(`canvas${this.diyId}`);
       let dataurl = canvas.toDataURL("image/png");
       var formData = new FormData();
       const base64File = _this.dataURItoBlob(dataurl);
       formData.append("file", base64File, "image.png");
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://192.168.0.100:8080/file/upload", true);
+      xhr.open("POST", "https://www.mocky.io/v2/5cc8019d300000980a055e76", true);
       // 添加http头，发送信息至服务器时内容编码类型
       //   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -242,7 +238,8 @@ export default {
               type: "success",
             });
             console.log(xhr.responseText);
-            // fn.call(xhr.responseText);
+            const fileObj=JSON.parse(xhr.responseText);
+            _this.$emit("getPhotoFile",fileObj);
           } else {
             _this.$message({
               message: "上传失败！",

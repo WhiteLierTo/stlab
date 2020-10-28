@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import verificationcode from "../../../components/verificationcode";
+import verificationcode from "../../../components/vertification/verificationcode";
 export default {
   components: { verificationcode },
   name: "Login",

@@ -112,14 +112,10 @@
 </template>
 
 <script>
-import TinymceEditor from "../../../components/tinyeditor";
-import uploadTool from "../../../components/uploadTool";
-import twoSidePhotoGroup from "../../../components/twoSidePhotoGroup";
+import TinymceEditor from "../../../components/tinymce/tinyeditor";
 export default {
   components: {
     TinymceEditor,
-    uploadTool,
-    twoSidePhotoGroup,
   },
   name: "announcement",
   data() {
